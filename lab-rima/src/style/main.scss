@@ -1,0 +1,25 @@
+input.name, input.budget {
+  height: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+button.save, button.update {
+  height: 2em;
+  margin: 1em;
+  border-color: #5F9EA0;
+  background-color: #5F9EA0;
+  border-radius: 5px;
+  color: white;
+}
+
+button.delete, button.cancel {
+  border-color: #2F4F4F;
+  background-color: #2F4F4F;
+  border-radius: 5px;
+  color: white;
+}
+
+form.category-form {
+  margin-top: 1em;
+}
