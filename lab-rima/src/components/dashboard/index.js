@@ -19,11 +19,11 @@ class Dashboard extends React.Component{
 
         <ul>
           {
-            this.props.categories.map(category => {
-              console.log('in map category', category);
+            this.props.categories.map(categoryItem => {
+              console.log('in map category', categoryItem);
               return <CategoryItem 
-                key={category.id}
-                category={category.name}
+                key={categoryItem.id}
+                categoryItem={categoryItem}
                 onClick={this.props.dashboardCategoryDelete} />;
             })
           }

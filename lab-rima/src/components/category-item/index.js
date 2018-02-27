@@ -7,11 +7,9 @@ import {renderIf} from '../../lib/utils';
 
 class CategoryItem extends React.Component{
   constructor(props){
-    console.log('item constructor');
     super(props);
 
     this.state = {
-      category: this.props.category,
       editing: false,
     };
 
@@ -25,7 +23,7 @@ class CategoryItem extends React.Component{
 
   handleClick(event) {
     event.preventDefault();
-    this.props.onClick(this.state.category);
+    this.props.onClick(this.props.categoryItem);
   }
 
   handleDoubleClick(event) {
@@ -34,12 +32,11 @@ class CategoryItem extends React.Component{
   }
 
   render(){
-    console.log('item render');
     return <li
         key={this.props.key}
         onDoubleClick={this.handleDoubleClick}
       >
-        <p>{this.state.category.name}: {this.state.category.budget}</p>
+        <p>{this.props.categoryItem.name}: {this.props.categoryItem.budget}</p>
 
         <button
           className="delete"
@@ -49,7 +46,7 @@ class CategoryItem extends React.Component{
 
         {renderIf(this.state.editing,
           <CategoryForm
-            category={this.state.category}
+            category={this.props.categoryItem}
             buttonText='update'
             onComplete={this.props.categoryItemCategoryUpdate} />
         )}
@@ -58,7 +55,7 @@ class CategoryItem extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  category: state
+  categories: state
 });
 
 const mapDispatchToProps = (dispatch, getState) => ({
