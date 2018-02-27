@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {renderIf} from '../../lib/utils';
 
 class CategoryForm extends React.Component{
   constructor(props){
@@ -37,6 +37,17 @@ class CategoryForm extends React.Component{
     });
   }
 
+  handleClick(event){
+    event.preventDefault();
+
+    this.props.editing.setState({editing: false});
+
+    this.setState({
+      name: '',
+      budget: 0,
+    });
+  }
+
   render(){
     return(
       <form
@@ -64,6 +75,15 @@ class CategoryForm extends React.Component{
           type="submit">
           {this.props.buttonText}
         </button>
+
+        {renderIf(this.props.editing,
+          <button
+            className="cancel"
+            type="button"
+            onClick={this.handleClick}>
+            cancel
+          </button>
+        )}
       </form>
     );
   }

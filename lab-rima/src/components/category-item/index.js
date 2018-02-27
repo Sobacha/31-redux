@@ -21,6 +21,13 @@ class CategoryItem extends React.Component{
     }
   }
 
+  handleGetSetState() {
+    return {
+      state: this.state,
+      setState: this.setState.bind(this),
+    };
+  }
+
   handleClick(event) {
     event.preventDefault();
     this.props.onClick(this.props.categoryItem);
@@ -46,6 +53,7 @@ class CategoryItem extends React.Component{
 
       {renderIf(this.state.editing,
         <CategoryForm
+          editing={this.handleGetSetState()}
           category={this.props.categoryItem}
           buttonText='update'
           onComplete={this.props.categoryItemCategoryUpdate} />
