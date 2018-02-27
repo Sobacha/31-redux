@@ -5,7 +5,11 @@ class CategoryForm extends React.Component{
   constructor(props){
     super(props);
 
-    this.state = this.props.category ? this.props.category : {name: '', budget: 0};
+    this.state = this.props.category ? this.props.category :
+      {
+        name: '',
+        budget: 0,
+      };
 
     let memberFunctions = Object.getOwnPropertyNames(CategoryForm.prototype);
     for(let functionName of memberFunctions){
@@ -26,6 +30,11 @@ class CategoryForm extends React.Component{
   handleSubmit(event){
     event.preventDefault();
     this.props.onComplete(this.state);
+
+    this.setState({
+      name: '',
+      budget: 0,
+    });
   }
 
   render(){

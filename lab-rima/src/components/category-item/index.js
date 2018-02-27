@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} form 'react-redux';
+import {categoryUpdate} from '../../actions/category-action';
 import CategoryForm from '../category-form/index';
 import { renderIf } from '../../lib/utils';
 
@@ -20,16 +22,9 @@ class CategoryItem extends React.Component{
     }
   }
 
-  handleGetSetState() {
-    return {
-      state: this.state,
-      setState: this.setState.bind(this),
-    };
-  }
-
   handleClick(event) {
     event.preventDefault();
-    this.props.handleRemoveCategory(this.props.category);
+    this.props.onClick(this.state.category);
   }
 
   handleDoubleClick(event) {
@@ -44,6 +39,7 @@ class CategoryItem extends React.Component{
         onDoubleClick={this.handleDoubleClick}
       >
         <p>{this.props.category.name}: {this.props.category.budget}</p>
+
         <button
           className="delete"
           onClick={this.handleClick}>
@@ -51,11 +47,21 @@ class CategoryItem extends React.Component{
         </button>
 
         {renderIf(this.state.editing,
-          <CategoryForm categoryItem={this.handleGetSetState()} handleUpdateCategory={this.props.handleUpdateCategory} />
+          <CategoryForm
+            buttonText='update'
+            onComplete={this.props.noteItemCategoryUpdate} />
         )}
       </li>
     );
   }
 }
 
-export default CategoryItem;
+const mapStateToProps = state => ({
+  category: state.category
+});
+
+const mapDispatchToProps = (dispatch, getState) => ({
+  noteItemCategoryUpdate: category => dispatch(categoryUpdate(category)),
+});
+
+export default (mapStateToProps, mapDispatchToProps)(CategoryItem);
