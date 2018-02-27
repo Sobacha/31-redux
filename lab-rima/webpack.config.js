@@ -15,7 +15,7 @@ let plugins = [
   new HtmlPlugin(),
   new ExtractTextPlugin('bundle-[hash].css'),
   new EnvironmentPlugin(['NODE_ENV']),
-  new DefinePlugin({__DEBUG__: JSON.stringify(!!production)}),
+  new DefinePlugin({__DEBUG__: JSON.stringify(!production)}),
 ];
 
 if(production){

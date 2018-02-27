@@ -8,6 +8,7 @@ import CategoryItem from '../category-item/index';
 class Dashboard extends React.Component{
 
   render(){
+    console.log(this.props.categories);
     return(
       <section>
         <h1>Budget Tracker</h1>
@@ -17,15 +18,14 @@ class Dashboard extends React.Component{
           onComplete={this.props.dashboardCategoryCreate} />
 
         <ul>
-          {this.props.categories ?
+          {
             this.props.categories.map(category => {
-              <CategoryItem 
+              console.log('in map category', category);
+              return <CategoryItem 
                 key={category.id}
-                category={category}
-                onClick={this.props.dashboardCategoryDelete} />
+                category={category.name}
+                onClick={this.props.dashboardCategoryDelete} />;
             })
-            :
-            undefined
           }
         </ul>
       </section>
@@ -34,7 +34,7 @@ class Dashboard extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  categories: state,
+  categories: state
 });
 
 const mapDispatchToProps = (dispatch, getState) => ({

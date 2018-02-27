@@ -2,11 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {categoryUpdate} from '../../action/category-action';
 import CategoryForm from '../category-form/index';
-import { renderIf } from '../../lib/utils';
+import {renderIf} from '../../lib/utils';
 
 
 class CategoryItem extends React.Component{
   constructor(props){
+    console.log('item constructor');
     super(props);
 
     this.state = {
@@ -33,12 +34,12 @@ class CategoryItem extends React.Component{
   }
 
   render(){
-    return(
-      <li
-        key={this.props.category.id}
+    console.log('item render');
+    return <li
+        key={this.props.key}
         onDoubleClick={this.handleDoubleClick}
       >
-        <p>{this.props.category.name}: {this.props.category.budget}</p>
+        <p>{this.state.category.name}: {this.state.category.budget}</p>
 
         <button
           className="delete"
@@ -48,21 +49,20 @@ class CategoryItem extends React.Component{
 
         {renderIf(this.state.editing,
           <CategoryForm
-            category={this.props.category}
+            category={this.state.category}
             buttonText='update'
-            onComplete={this.props.noteItemCategoryUpdate} />
+            onComplete={this.props.categoryItemCategoryUpdate} />
         )}
       </li>
-    );
   }
 }
 
 const mapStateToProps = state => ({
-  category: state.category
+  category: state
 });
 
 const mapDispatchToProps = (dispatch, getState) => ({
-  noteItemCategoryUpdate: category => dispatch(categoryUpdate(category)),
+  categoryItemCategoryUpdate: category => dispatch(categoryUpdate(category)),
 });
 
-export default (mapStateToProps, mapDispatchToProps)(CategoryItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);
