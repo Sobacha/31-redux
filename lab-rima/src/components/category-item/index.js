@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} form 'react-redux';
-import {categoryUpdate} from '../../actions/category-action';
+import {connect} from 'react-redux';
+import {categoryUpdate} from '../../action/category-action';
 import CategoryForm from '../category-form/index';
 import { renderIf } from '../../lib/utils';
 

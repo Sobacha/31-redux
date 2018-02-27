@@ -57,8 +57,7 @@ class CategoryForm extends React.Component{
           type="number"
           name="budget"
           value={this.state.budget}
-          onChange={this.handleChange}
-          placeholder="Enter a budget"/>
+          onChange={this.handleChange}/>
 
         <button
           className="save"

@@ -1,5 +1,5 @@
 import React from 'react';
-import createStore from '../lib/store';
+import createStore from '../../lib/store';
 import {Provider} from 'react-redux';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Dashboard from '../dashboard/index';
@@ -19,9 +19,7 @@ class App extends React.Component{
       <main className="app">
         <Provider store={store}>
           <BrowserRouter>
-            <div className="routes">
-              <Route exact path="/" component={Dashboard} />
-            </div>
+            <Route exact path="/" component={Dashboard} />
           </BrowserRouter>
         </Provider>
       </main>
