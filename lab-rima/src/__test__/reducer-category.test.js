@@ -1,5 +1,4 @@
 import reducer from '../reducer/category';
-import * as types from '../action/category-action';
 
 
 describe('Category reducer', () => {

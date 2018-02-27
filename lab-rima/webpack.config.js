@@ -22,7 +22,7 @@ if(production){
   plugins = plugins.concat([
     new CleanPlugin(),
     new UglifyPlugin(),
-  ])
+  ]);
 }
 
 
@@ -58,9 +58,9 @@ module.exports = {
             options: {
               limit: 10000,
               name: 'font/[name].[ext]',
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         test: /\.(jpg|jpeg|gif|png|tiff)$/,
@@ -70,9 +70,9 @@ module.exports = {
             options: {
               limit: 60000,
               name: 'image/[name].[ext]',
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         test: /\.(mp3|mp4|wav|flac|ogg)$/,
@@ -81,9 +81,9 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: 'audio/[name].[ext]',
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
     ],
   },

@@ -33,29 +33,29 @@ class CategoryItem extends React.Component{
 
   render(){
     return <li
-        key={this.props.key}
-        onDoubleClick={this.handleDoubleClick}
-      >
-        <p>{this.props.categoryItem.name}: {this.props.categoryItem.budget}</p>
+      key={this.props.key}
+      onDoubleClick={this.handleDoubleClick}
+    >
+      <p>{this.props.categoryItem.name}: {this.props.categoryItem.budget}</p>
 
-        <button
-          className="delete"
-          onClick={this.handleClick}>
+      <button
+        className="delete"
+        onClick={this.handleClick}>
           Delete
-        </button>
+      </button>
 
-        {renderIf(this.state.editing,
-          <CategoryForm
-            category={this.props.categoryItem}
-            buttonText='update'
-            onComplete={this.props.categoryItemCategoryUpdate} />
-        )}
-      </li>
+      {renderIf(this.state.editing,
+        <CategoryForm
+          category={this.props.categoryItem}
+          buttonText='update'
+          onComplete={this.props.categoryItemCategoryUpdate} />
+      )}
+    </li>;
   }
 }
 
 const mapStateToProps = state => ({
-  categories: state
+  categories: state,
 });
 
 const mapDispatchToProps = (dispatch, getState) => ({
