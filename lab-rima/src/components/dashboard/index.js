@@ -8,7 +8,6 @@ import CategoryItem from '../category-item/index';
 class Dashboard extends React.Component{
 
   render(){
-    console.log(this.props.categories);
     return(
       <section>
         <h1>Budget Tracker</h1>
@@ -20,7 +19,6 @@ class Dashboard extends React.Component{
         <ul>
           {
             this.props.categories.map(categoryItem => {
-              console.log('in map category', categoryItem);
               return <CategoryItem 
                 key={categoryItem.id}
                 categoryItem={categoryItem}
