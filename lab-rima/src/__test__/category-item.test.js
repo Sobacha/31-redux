@@ -14,24 +14,24 @@ describe('CategoryItem component', () => {
   test('initial state', () => {
     const mockCategory = {name: 'test name', budget: 100, id: 1};
     const dashboard = mount(<Dashboard />);
-    dashboard.setState({categorys: [mockCategory]});
-    const categoryitem = mount(<CategoryItem key={mockCategory.id} category={mockCategory} handleRemoveCategory={dashboard.instance().handleRemoveCategory} />);
+    dashboard.setState({categories: [mockCategory]});
+    const categoryitem = mount(<CategoryItem key={mockCategory.id} category={mockCategory} />);
 
     expect(categoryitem.state('editing')).toEqual(false);
-    expect(dashboard.state('categorys')).toEqual([mockCategory]);
+    expect(dashboard.state('category')).toEqual([mockCategory]);
   });
 
-  test('handleClick: should remove a category from categorys in dashboard state when delete button is clicked', () => {
+  test('handleClick: should remove a category from categories in dashboard state when delete button is clicked', () => {
     const mockCategory = {name: 'test name1', budget: 200, id: 2};
     const dashboard = mount(<Dashboard />);
-    dashboard.setState({categorys: [mockCategory]});
-    const categoryitem = mount(<CategoryItem key={mockCategory.id} category={mockCategory} handleRemoveCategory={dashboard.instance().handleRemoveCategory} />);
+    dashboard.setState({categories: [mockCategory]});
+    const categoryitem = mount(<CategoryItem key={mockCategory.id} category={mockCategory} onClick={dashboard.props.dashboardCategoryDelete} />);
 
-    expect(dashboard.state('categorys')).toEqual([mockCategory]);
+    expect(dashboard.state('categories')).toEqual([mockCategory]);
 
     categoryitem.find('.delete').simulate('click');
 
-    expect(dashboard.state().categorys).toEqual([]);
+    expect(dashboard.state().categories).toEqual([]);
   });
 
 });

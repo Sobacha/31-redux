@@ -48,6 +48,7 @@ class CategoryItem extends React.Component{
 
         {renderIf(this.state.editing,
           <CategoryForm
+            category={this.props.category}
             buttonText='update'
             onComplete={this.props.noteItemCategoryUpdate} />
         )}

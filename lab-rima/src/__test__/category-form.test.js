@@ -11,11 +11,19 @@ import Dashboard from '../components/dashboard/index';
 
 describe('CategoryForm component', () => {
 
-  test('initial state', () => {
+  test('initial state for create one', () => {
     let mountedCategoryForm = mount(<CategoryForm />);
 
     expect(mountedCategoryForm.state('name')).toEqual('');
     expect(mountedCategoryForm.state('budget')).toEqual(0);
+  });
+
+  test('initial state for update one', () => {
+    const mockCategory = {name: 'test name', budget: 100, id: 1};
+    let mountedCategoryForm = mount(<CategoryForm category={mockCategory} />);
+
+    expect(mountedCategoryForm.state('name')).toEqual('test name');
+    expect(mountedCategoryForm.state('budget')).toEqual(100);
   });
 
   test('handleChange: should change state when input value changes', () => {
@@ -31,9 +39,9 @@ describe('CategoryForm component', () => {
     expect(form.state().budget).toEqual(100);
   });
 
-  test('handleSubmit: should save a new category in categorys in dashboard state when save button is clicked', () => {
+  test('handleSubmit: should save a new category in categories in dashboard state when save button is clicked', () => {
     const dashboard = mount(<Dashboard />);
-    const form = mount(<CategoryForm handleAddCategory={dashboard.instance().handleAddCategory}/>);
+    const form = mount(<CategoryForm buttonText='create' onComplete={dashboard.state.dashboardCategoryCreate} />);
     const inputName = form.find('.name');
     const inputBudget = form.find('.budget');
     inputName.instance().value = 'Test name2';
@@ -42,8 +50,8 @@ describe('CategoryForm component', () => {
     inputBudget.simulate('change');
     form.simulate('submit');
 
-    expect(dashboard.state().categorys[0].name).toEqual('Test name2');
-    expect(dashboard.state().categorys[0].budget).toEqual(200);
+    expect(dashboard.state().categories[0].name).toEqual('Test name2');
+    expect(dashboard.state().categories[0].budget).toEqual(200);
   });
 
 });
